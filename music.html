@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="musicApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Playlist Generator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="music.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div ng-controller="PlaylistController">
+    <div class="header">
+        <img src="Images/icon.jpeg"/>
+        <div class="name"><h2 id="name">Musical Mixtape</h2></div>
+    </div>
+    <br/>
+    <div class="main">
+        <div class="left">
+            <label for="mood">Mood:</label>
+            <select id="mood" ng-model="selectedMood" ng-options="mood for mood in moods">
+                <option value="">-- Select Mood --</option>
+            </select>
+            <br/>
+            <div class="btn"><button ng-click="generatePlaylist()">Generate Playlist</button></div>
+            <div ng-show="playlist.length" class="playlist">
+                <h3>Your Playlist:</h3>
+                <ul>
+                    <li ng-repeat="song in playlist">{{ song.title }} - {{ song.artist }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="icons">
+                <a href="https://open.spotify.com/"><img class="icon" src="Images/spotify.jpeg" /></a>
+                <div class="links"><h2>Spotify</h2></div>
+            </div>
+            <div class="icons">
+                <a href="https://music.amazon.in/?refMarker=null"><img class="icon" src="Images/amazon.jpeg" /></a>
+                <div class="links"><h2>Amazon Music</h2></div>
+            </div>
+            <div class="icons">
+                <a href="https://gaana.com/"><img class="icon" src="Images/Gaana.png" /></a>
+                <div class="links"><h2>Gaana</h2></div>
+            </div>
+            <br>
+            <div class="icons">
+                <a href="https://wynk.in/music"><img class="icon" src="Images/wink.jpeg" /></a>
+                <div class="links"><h2>Wink</h2></div>
+            </div>            
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    var app = angular.module('musicApp', []);
+
+    app.controller('PlaylistController', function($scope) {
+         $scope.moods = ['Happy', 'Relaxed', 'Energetic', 'Chill', 'Upbeat'];
+
+        $scope.songs = [
+            { title: 'Cold Heart', artist: 'Dua Lipa', mood: 'Happy' },
+            { title: 'Sorry', artist: 'Justin Bieber',mood:'Happy' },
+            { title: 'Summer of Love', artist: 'Shawn Mendes',mood:'Happy' },
+            { title: 'Thats What I Want', artist: 'Lil Nas X',mood:'Happy' },
+            { title: 'Eastside', artist: 'Benny Blanco',mood:'Happy' },
+            { title: 'Badtameez Dil', artist: 'Pritam',mood:'Happy' },
+            { title: 'Pyaar Hota Kai Baar Hai', artist: 'Arijit Singh',mood:'Happy' },
+            { title: 'Do Din', artist: 'Darshan Raval',mood:'Happy' },
+            { title: 'Teri Baaton Main Aisa Uljha Jiya', artist: 'Tanishk Bagchi',mood:'Happy' },
+            { title: 'Koka', artist: 'Jasbir Jassi',mood:'Happy' },
+
+            { title: 'Lavender Haze', artist: 'Taylor Swift', mood: 'Relaxed' },
+            { title: 'Watermelon Sugar', artist: 'Harry Styles', mood: 'Relaxed' },
+            { title: 'Heat Waves', artist: 'Glass Animals', mood: 'Relaxed' },
+            { title: 'Let Me', artist: 'Zayn', mood: 'Relaxed' },
+            { title: 'Love You Like a Love Song', artist: 'Selena Gomez', mood: 'Relaxed' },
+            { title: 'Humraah', artist: 'Sachet Tandon', mood: 'Relaxed' },
+            { title: 'Saibo', artist: 'Shreya Ghoshal', mood: 'Relaxed' },
+            { title: 'Tang Mujhko', artist: 'Arjun Kanungo', mood: 'Relaxed' },
+            { title: 'La La La', artist: 'Neha Kakkar', mood: 'Relaxed' },
+            { title: 'Chedkhaniyaan', artist: 'Shankar-Ehsaan-Loy', mood: 'Relaxed' },
+
+            { title: 'Shake it Off', artist: 'Taylor Swift', mood: 'Energetic' },
+            { title: 'Starboy', artist: 'The Weekeend', mood: 'Energetic' },
+            { title: 'Speed Drive', artist: 'Charlie XCX', mood: 'Energetic' },
+            { title: 'Pepeta', artist: 'Nora Fatehi', mood: 'Energetic' },
+            { title: 'Left And Right', artist: 'Charlie Puth', mood: 'Energetic' },
+            { title: 'Garmi', artist: 'Badshah', mood: 'Energetic' },
+            { title: 'Shor Machega', artist: 'Hommie Dilliwala', mood: 'Energetic' },
+            { title: 'Na Ja', artist: 'Pav Dharia', mood: 'Energetic' },
+            { title: 'Make Some Noise for The Desi Boyz', artist: 'KK', mood: 'Energetic' },
+            { title: 'Jeene ke Hai Chaar Din', artist: 'Sonu Nigam', mood: 'Energetic' },
+
+            { title: 'I Like Me Better', artist: 'Lauv', mood: 'Chill' },
+            { title: 'Riptide', artist: 'The Chainsmokers', mood: 'Chill' },
+            { title: 'Wait a Minute', artist: 'Willow', mood: 'Chill' },
+            { title: 'Breathin', artist: 'Ariana Grande', mood: 'Chill' },
+            { title: 'Go Down Deh', artist: 'Sean Paul', mood: 'Chill' },
+            { title: 'Just Chill', artist: 'Sonu Nigam', mood: 'Chill' },
+            { title: 'Leja Re', artist: 'Dhvani Bhanushali', mood: 'Chill' },
+            { title: 'Aa Toh Sahi', artist: 'Meet Bros', mood: 'Chill' },
+            { title: 'Thug Ranjha', artist: 'Akasa', mood: 'Chill' },
+            { title: 'Dil Nu', artist: 'AP Dhillon', mood: 'Chill' },
+        
+            { title: 'One Dance', artist: 'Drake', mood: 'Upbeat' },
+            { title: 'Senorita', artist: 'Camila Cabello', mood: 'Upbeat' },
+            { title: 'Animals', artist: 'Maroon 5', mood: 'Upbeat' },
+            { title: 'Shape of You', artist: 'Ed Sheeran', mood: 'Upbeat' },
+            { title: 'Light It Up', artist: 'Light It up', mood: 'Upbeat' },
+            { title: 'Bang Bang', artist: 'Vishal-Shekhar', mood: 'Upbeat' },
+            { title: 'One Bottle Down', artist: 'Yo Yo Honey Singh', mood: 'Upbeat' },
+            { title: 'Liggi', artist: 'Ritviz', mood: 'Upbeat' },
+            { title: 'Waah', artist: 'Hasan Shah', mood: 'Upbeat' },
+            { title: 'Barbaadiyan', artist: 'Sachin-Jigar', mood: 'Upbeat' },  
+        ];
+
+        $scope.generatePlaylist = function() {
+            if ($scope.selectedMood) {
+                $scope.playlist = $scope.songs.filter(function(song) {
+                    return song.mood === $scope.selectedMood;
+                });
+            } else {
+                $scope.playlist = [];
+            }
+        };
+    });
+</script>
+</body>
+</html>
